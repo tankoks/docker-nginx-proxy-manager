@@ -98,14 +98,14 @@ RUN \
     sed-patch 's|81|8181|' /etc/nginx/conf.d/default.conf && \
 
     # Change the HTTP port 80 to the unprivileged port 8080.
-    sed-patch 's|listen 80;|listen 8080;|' /etc/nginx/conf.d/default.conf && \
-    sed-patch 's|listen 80;|listen 8080;|' /opt/nginx-proxy-manager/src/backend/templates/letsencrypt-request.conf && \
-    sed-patch 's|listen 80;|listen 8080;|' /opt/nginx-proxy-manager/src/backend/templates/_listen.conf && \
-    sed-patch 's|listen 80 |listen 8080 |' /opt/nginx-proxy-manager/src/backend/templates/default.conf && \
+    sed-patch 's|listen 80;|listen 80;|' /etc/nginx/conf.d/default.conf && \
+    sed-patch 's|listen 80;|listen 80;|' /opt/nginx-proxy-manager/src/backend/templates/letsencrypt-request.conf && \
+    sed-patch 's|listen 80;|listen 80;|' /opt/nginx-proxy-manager/src/backend/templates/_listen.conf && \
+    sed-patch 's|listen 80 |listen 80 |' /opt/nginx-proxy-manager/src/backend/templates/default.conf && \
 
     # Change the HTTPs port 443 to the unprivileged port 4443.
-    sed-patch 's|listen 443 |listen 4443 |' /etc/nginx/conf.d/default.conf && \
-    sed-patch 's|listen 443 |listen 4443 |' /opt/nginx-proxy-manager/src/backend/templates/_listen.conf && \
+    sed-patch 's|listen 443 |listen 443 |' /etc/nginx/conf.d/default.conf && \
+    sed-patch 's|listen 443 |listen 443 |' /opt/nginx-proxy-manager/src/backend/templates/_listen.conf && \
 
     # Fix nginx test command line.
     sed-patch 's|-g "error_log off;"||' /opt/nginx-proxy-manager/src/backend/internal/nginx.js && \
@@ -161,7 +161,7 @@ VOLUME ["/config"]
 #   - 8080: HTTP traffic
 #   - 4443: HTTPs traffic
 #   - 8181: Management web interface
-EXPOSE 8080 4443 8181
+EXPOSE 80 443 8181
 
 # Metadata.
 LABEL \
